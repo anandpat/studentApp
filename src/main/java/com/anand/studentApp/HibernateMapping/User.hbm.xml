@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+<class name="com.anand.studentApp.models.User" table="User">
+
+	<id name="userName" type="string">
+		<column name="userName" length="20" />
+	</id>
+
+	<!-- <property name="userId" type="java.lang.Integer">
+		<column name="userId" />
+		<generator class="increment" />
+	</property>
+ -->
+	<property name="password" type="string">
+		<column name="password" length="20" not-null="true" />
+	</property>
+
+	<property name="branch" column="branch">
+		<type name="org.hibernate.type.EnumType">
+			<param name="enumClass">com.anand.studentApp.models.Branch</param>
+			<param name="useNamed">true</param>
+			<param name="type">12</param>
+		</type>
+	</property>
+
+	<property name="role" column="role">
+		<type name="org.hibernate.type.EnumType">
+			<param name="enumClass">com.anand.studentApp.models.Role</param>
+			<param name="useNamed">true</param>
+			<param name="type">12</param>
+		</type>
+	</property>
+
+	<property name="sex" column="sex">
+		<type name="org.hibernate.type.EnumType">
+			<param name="enumClass">com.anand.studentApp.models.Sex</param>
+			<param name="useNamed">true</param>
+			<param name="type">12</param>
+		</type>
+	</property>
+
+	<one-to-one name="contactInfo" class="com.anand.studentApp.models.ContactInfo"
+		cascade="save-update"></one-to-one>
+</class>
+</hibernate-mapping>
