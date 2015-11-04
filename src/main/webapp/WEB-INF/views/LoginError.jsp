@@ -4,12 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Error</title>
 </head>
 <body>
-Spring Says
- ${message}
- ${user.userName}
- ${user.sex}
+ <H1>User Name or Password in incorrect </H1>	
 </body>
 </html>

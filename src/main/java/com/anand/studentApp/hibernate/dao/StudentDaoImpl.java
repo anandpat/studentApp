@@ -11,7 +11,11 @@ public class StudentDaoImpl implements StudentDao {
 	private  SessionFactory sessionFactory= HibernateUtil.getSessionFactory();
 	@Override
 	public User getUser(String userName) {
-		
+		Session session = sessionFactory.openSession();
+		User user=(User)session.get(User.class, userName);
+		if (user!=null){
+			return user;
+		}
 		return null;
 	}
 
