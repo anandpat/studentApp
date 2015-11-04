@@ -8,8 +8,9 @@
 </head>
 <body>
 Spring Says
- ${message}
- ${user.userName}
- ${user.sex}
+ ${message}<br>
+ ${user.fullName}
+ <br> You Are loggedIn as a ${user.role}
+ 
 </body>
 </html>

@@ -16,6 +16,7 @@ public class TestMain {
 		user.setBranch(Branch.CS);
 		user.setUserName("anand248");
 		user.setPassword("ahss");
+		user.setFullName("Anand Patel");
 		user.setRole(Role.STUDENT);
 		user.setSex(Sex.MALE);
 		
