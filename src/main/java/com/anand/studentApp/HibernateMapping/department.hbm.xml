@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25 April 2011 7:52:33 PM by Hibernate Tools 3.4.0.CR1 -->
+
+<hibernate-mapping>
+	<class name="com.anand.studentApp.models.Department" table="dept">
+
+		<id name="branch" column="branch">
+			<type name="org.hibernate.type.EnumType">
+				<param name="enumClass">com.anand.studentApp.models.Branch</param>
+				<param name="useNamed">true</param>
+				<param name="type">12</param>
+			</type>
+		</id>
+		
+		<property name="hod" type="string">
+			<column name="hod" not-null="true" />
+		</property>
+ </class>
+</hibernate-mapping>

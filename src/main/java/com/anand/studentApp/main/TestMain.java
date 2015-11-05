@@ -17,7 +17,7 @@ public class TestMain {
 		user.setUserName("anand248");
 		user.setPassword("ahss");
 		user.setFullName("Anand Patel");
-		user.setRole(Role.STUDENT);
+		user.setRole(Role.TEACHER);
 		user.setSex(Sex.MALE);
 		
 		ContactInfo contactInfo= new ContactInfo();

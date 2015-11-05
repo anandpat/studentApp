@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-Spring Says
+Spring Says hi to 
  ${message}<br>
  ${user.fullName}
  <br> You Are loggedIn as a ${user.role}

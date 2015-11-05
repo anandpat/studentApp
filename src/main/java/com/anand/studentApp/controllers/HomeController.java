@@ -47,7 +47,7 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/login",method = RequestMethod.POST)
-	public String sayHello(@ModelAttribute("UserLoginBean")UserLoginBean userLoginBean,Model model) {
+	public String login(@ModelAttribute("UserLoginBean")UserLoginBean userLoginBean,Model model) {
 		//model.addAttribute("UserLoginBean", userLoginBean);
 		StudentDaoImpl daoImpl= new StudentDaoImpl();
 		

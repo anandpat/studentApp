@@ -4,6 +4,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import com.anand.studentApp.hibernate.util.HibernateUtil;
+import com.anand.studentApp.models.Branch;
+import com.anand.studentApp.models.Department;
 import com.anand.studentApp.models.User;
 
 public class StudentDaoImpl implements StudentDao {
@@ -24,6 +26,12 @@ public class StudentDaoImpl implements StudentDao {
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 		session.persist(user);
+		// to add in department 
+		Department department1=new Department();
+		department1.setBranch(Branch.IT);
+		department1.setHod(user.getUserName());
+		
+		session.persist(department1);
 		System.out.println("useer inserted!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 		session.getTransaction().commit();
 		

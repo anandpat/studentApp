@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<class name="com.anand.studentApp.models.SubjectSchedule" table="subjectSchedule">
+
+		<id name="subjectCode" type="string" >
+			<column name="subjectCode" length="20"/>
+		</id>
+		
+		<property name="subjectName" type="string">
+			<column name="subjectName" length="100" not-null="true" />
+		</property>
+		
+		<property name="branch" column="branch">
+			<type name="org.hibernate.type.EnumType">
+				<param name="enumClass">com.anand.studentApp.models.Branch</param>
+				<param name="useNamed">true</param>
+				<param name="type">12</param>
+			</type>
+		</property>
+		
+		<property name="teacher" type="string">
+			<column name="teacher" not-null="true" />
+		</property>
+
+	
+</class>
+
+</hibernate-mapping>
