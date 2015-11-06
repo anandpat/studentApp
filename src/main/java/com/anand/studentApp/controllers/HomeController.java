@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.anand.studentApp.hibernate.dao.StudentDaoImpl;
+import com.anand.studentApp.models.Role;
 import com.anand.studentApp.models.User;
 import com.anand.studentApp.viewBeans.UserLoginBean;
 
@@ -55,9 +56,21 @@ public class HomeController {
 
 		User user = daoImpl.getUser(userLoginBean.getUserName());
 		if (user != null && user.getPassword().equals(userLoginBean.getPassword())) {
-			model.addAttribute("message", "hello world!!");
+			// model.addAttribute("message", "hello world!!");
 			model.addAttribute("user", user);
-			return "hello";
+			if (user.getRole().equals(Role.STUDENT)) {
+				return "studentHome";
+			}
+			if (user.getRole().equals(Role.TEACHER)) {
+				return "teacherHome";
+			}
+			if (user.getRole().equals(Role.ADMIN)) {
+				return "adminHome";
+			}
+
+			if (user.getRole().equals(Role.TPO)) {
+				return "tpoHome";
+			}
 		}
 		return "LoginError";
 	}

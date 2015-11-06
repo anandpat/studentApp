@@ -4,12 +4,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Error</title>
+<title>Welcome</title>
 </head>
-
 <body>
 	<div align="center">
-		<H1>User Name or Password in incorrect</H1>
+		<h1>Hello world!</h1>
+		<h2>hi student ${user.fullName} !!</h2>
+		<br> <br> You Are loggedIn as a ${user.role}
 	</div>
 </body>
 </html>
