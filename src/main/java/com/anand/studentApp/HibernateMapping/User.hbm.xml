@@ -16,11 +16,11 @@
 		<property name="password" type="string">
 			<column name="password" length="20" not-null="true" />
 		</property>
-		
+
 		<property name="fullName" type="string">
 			<column name="fullName" length="20" not-null="true" />
 		</property>
-		
+
 		<property name="branch" column="branch">
 			<type name="org.hibernate.type.EnumType">
 				<param name="enumClass">com.anand.studentApp.models.Branch</param>

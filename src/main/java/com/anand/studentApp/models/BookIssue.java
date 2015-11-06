@@ -1,7 +1,7 @@
 package com.anand.studentApp.models;
 
 public class BookIssue {
-	
+
 	private Book book;
 	private String bookId;
 	private String userName;

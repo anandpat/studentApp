@@ -6,36 +6,36 @@
 
 <hibernate-mapping>
 	<class name="com.anand.studentApp.models.ContactInfo" table="ContactInfo">
-		
+
 		<id name="userName" type="string">
-			<column name="userName" length="20"/>
+			<column name="userName" length="20" />
 			<generator class="foreign">
 				<param name="property">user</param>
 			</generator>
 		</id>
-		
+
 		<one-to-one name="user" class="com.anand.studentApp.models.User"
 			constrained="true"></one-to-one>
-			
+
 		<property name="parentName" type="string">
 			<column name="parentName" length="100" not-null="true" />
 		</property>
-		
+
 		<property name="primaryAdd" type="string">
 			<column name="primaryAdd" length="100" not-null="true" />
 		</property>
-		
+
 		<property name="secondaryAdd" type="string">
 			<column name="secondaryAdd" length="100" not-null="true" />
 		</property>
-		
+
 		<property name="homePhone" type="string">
 			<column name="homePhone" length="100" not-null="true" />
 		</property>
-		
+
 		<property name="MobileNum" type="string">
 			<column name="MobileNum" length="100" not-null="true" />
 		</property>
-		
+
 	</class>
 </hibernate-mapping>

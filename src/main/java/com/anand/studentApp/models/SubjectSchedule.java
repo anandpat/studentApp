@@ -4,7 +4,7 @@ public class SubjectSchedule {
 	private String subjectCode;
 	private String subjectName;
 	private Branch branch;
-	private String teacher; //username for the Teacher 
+	private String teacher; // username for the Teacher
 
 	public String getSubjectCode() {
 		return subjectCode;
@@ -37,7 +37,5 @@ public class SubjectSchedule {
 	public void setTeacher(String teacher) {
 		this.teacher = teacher;
 	}
-
-	
 
 }

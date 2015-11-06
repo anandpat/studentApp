@@ -248,24 +248,22 @@ public class Simulator {
 		session.getTransaction().commit();
 
 	}
-	
+
 	// 50 books
-	public static void addBooks(){
+	public static void addBooks() {
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
-		
-		for (int i=1;i<=50;i++){
-			Book book= new Book();
-			book.setBookId("book"+i);
-			book.setBookName("Colleege-Book"+i);
+
+		for (int i = 1; i <= 50; i++) {
+			Book book = new Book();
+			book.setBookId("book" + i);
+			book.setBookName("Colleege-Book" + i);
 			book.setIsAvailable('Y');
 			session.save(book);
 		}
-		
-		
-		
+
 		session.getTransaction().commit();
-		
+
 	}
 
 }

@@ -10,12 +10,13 @@ import com.anand.studentApp.models.User;
 
 public class StudentDaoImpl implements StudentDao {
 
-	private  SessionFactory sessionFactory= HibernateUtil.getSessionFactory();
+	private SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+
 	@Override
 	public User getUser(String userName) {
 		Session session = sessionFactory.openSession();
-		User user=(User)session.get(User.class, userName);
-		if (user!=null){
+		User user = (User) session.get(User.class, userName);
+		if (user != null) {
 			return user;
 		}
 		return null;
@@ -26,15 +27,15 @@ public class StudentDaoImpl implements StudentDao {
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 		session.persist(user);
-		// to add in department 
-		Department department1=new Department();
+		// to add in department
+		Department department1 = new Department();
 		department1.setBranch(Branch.IT);
 		department1.setHod(user.getUserName());
-		
+
 		session.persist(department1);
 		System.out.println("useer inserted!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 		session.getTransaction().commit();
-		
+
 	}
 
 }

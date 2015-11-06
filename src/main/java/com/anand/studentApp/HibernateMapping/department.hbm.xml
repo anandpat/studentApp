@@ -14,9 +14,9 @@
 				<param name="type">12</param>
 			</type>
 		</id>
-		
+
 		<property name="hod" type="string">
 			<column name="hod" not-null="true" />
 		</property>
- </class>
+	</class>
 </hibernate-mapping>

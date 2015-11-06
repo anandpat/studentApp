@@ -29,32 +29,34 @@ public class HomeController {
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-	//http://localhost:8080/studentApp/
+	// http://localhost:8080/studentApp/
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(@ModelAttribute("UserLoginBean")UserLoginBean userLoginBean,Locale locale, Model model) {
+	public String home(@ModelAttribute("UserLoginBean") UserLoginBean userLoginBean, Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 		model.addAttribute("UserLoginBean", userLoginBean);
-		
-		
-		/*Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
 
-		String formattedDate = dateFormat.format(date);
-
-		model.addAttribute("serverTime", formattedDate);*/
+		/*
+		 * Date date = new Date(); DateFormat dateFormat =
+		 * DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG,
+		 * locale);
+		 * 
+		 * String formattedDate = dateFormat.format(date);
+		 * 
+		 * model.addAttribute("serverTime", formattedDate);
+		 */
 
 		return "home";
 	}
 
-	@RequestMapping(value = "/login",method = RequestMethod.POST)
-	public String login(@ModelAttribute("UserLoginBean")UserLoginBean userLoginBean,Model model) {
-		//model.addAttribute("UserLoginBean", userLoginBean);
-		StudentDaoImpl daoImpl= new StudentDaoImpl();
-		
-		User user=daoImpl.getUser(userLoginBean.getUserName());
-		if (user!=null && user.getPassword().equals(userLoginBean.getPassword())){
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public String login(@ModelAttribute("UserLoginBean") UserLoginBean userLoginBean, Model model) {
+		// model.addAttribute("UserLoginBean", userLoginBean);
+		StudentDaoImpl daoImpl = new StudentDaoImpl();
+
+		User user = daoImpl.getUser(userLoginBean.getUserName());
+		if (user != null && user.getPassword().equals(userLoginBean.getPassword())) {
 			model.addAttribute("message", "hello world!!");
-			model.addAttribute("user",user);
+			model.addAttribute("user", user);
 			return "hello";
 		}
 		return "LoginError";
