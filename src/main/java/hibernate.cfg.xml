@@ -28,5 +28,7 @@
  <mapping resource="com/anand/studentApp/HibernateMapping/User.hbm.xml"></mapping>
  <mapping resource="com/anand/studentApp/HibernateMapping/department.hbm.xml"></mapping>
  <mapping resource="com/anand/studentApp/HibernateMapping/subjectSchedule.hbm.xml"></mapping>
+ <mapping resource="com/anand/studentApp/HibernateMapping/Book.hbm.xml"></mapping>
+ <mapping resource="com/anand/studentApp/HibernateMapping/BookIssue.hbm.xml"></mapping>
 </session-factory>
 </hibernate-configuration>
