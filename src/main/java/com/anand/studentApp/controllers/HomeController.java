@@ -1,10 +1,7 @@
 package com.anand.studentApp.controllers;
 
-import java.text.DateFormat;
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.Locale;
-
-import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.anand.studentApp.hibernate.dao.StudentDaoImpl;
+import com.anand.studentApp.models.PasswordChange;
 import com.anand.studentApp.models.Role;
 import com.anand.studentApp.models.User;
 import com.anand.studentApp.viewBeans.UserLoginBean;
@@ -74,7 +72,28 @@ public class HomeController {
 		}
 		return "LoginError";
 	}
-	
-	
+
+	@RequestMapping(value = "/forgotPwd", method = RequestMethod.GET)
+	public String forgotPass(@ModelAttribute("PasswordChange") PasswordChange passwordChange, Model model) {
+		ArrayList<String> questionList = new ArrayList<String>();
+		questionList.add("what is your home town?");
+		questionList.add("what is your parent name?");
+		model.addAttribute("passwordChange", passwordChange);
+		model.addAttribute("questionList", questionList);
+		return "passChange";
+
+	}
+
+	@RequestMapping(value = "/validatePassChange", method = RequestMethod.POST)
+	public String validatPassChange(@ModelAttribute("PasswordChange") PasswordChange passwordChange, Model model) {
+		model.addAttribute("passwordChange", passwordChange);
+		StudentDaoImpl daoImpl = new StudentDaoImpl();
+		boolean pass = daoImpl.forgotPassChange(passwordChange);
+
+		if (pass) {
+			return "passChangeSuccess";
+		}
+		return "passChangeFail";
+	}
 
 }
