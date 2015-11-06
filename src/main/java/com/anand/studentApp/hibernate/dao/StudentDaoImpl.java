@@ -24,18 +24,7 @@ public class StudentDaoImpl implements StudentDao {
 
 	@Override
 	public void insertUser(User user) {
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
-		session.persist(user);
-		// to add in department
-		Department department1 = new Department();
-		department1.setBranch(Branch.IT);
-		department1.setHod(user.getUserName());
-
-		session.persist(department1);
-		System.out.println("useer inserted!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-		session.getTransaction().commit();
-
+		
 	}
 
 }

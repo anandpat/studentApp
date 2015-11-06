@@ -31,5 +31,6 @@
 			resource="com/anand/studentApp/HibernateMapping/subjectSchedule.hbm.xml"></mapping>
 		<mapping resource="com/anand/studentApp/HibernateMapping/Book.hbm.xml"></mapping>
 		<mapping resource="com/anand/studentApp/HibernateMapping/BookIssue.hbm.xml"></mapping>
+		<mapping resource="com/anand/studentApp/HibernateMapping/PasswordChange.hbm.xml"></mapping>
 	</session-factory>
 </hibernate-configuration>

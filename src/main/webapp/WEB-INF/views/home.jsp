@@ -35,6 +35,7 @@
 				</tr>
 			</table>
 		</form:form>
+		<a href="forgotPwd">Forgot Password???</a>
 	</div>
 </body>
 </html>
