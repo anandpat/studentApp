@@ -46,11 +46,11 @@ public class StudentDaoImpl implements StudentDao {
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 		User user = (User) session.get(User.class, username);
-		
+
 		user.setPassword(newPassword);
 		session.merge(user);
 		session.getTransaction().commit();
-		
+
 	}
 
 }
