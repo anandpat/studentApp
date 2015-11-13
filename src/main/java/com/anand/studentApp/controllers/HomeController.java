@@ -33,7 +33,6 @@ public class HomeController {
 	public String home(@ModelAttribute("UserLoginBean") UserLoginBean userLoginBean, Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 		model.addAttribute("UserLoginBean", userLoginBean);
-
 		/*
 		 * Date date = new Date(); DateFormat dateFormat =
 		 * DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG,
