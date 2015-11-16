@@ -8,6 +8,7 @@ import com.anand.studentApp.models.Book;
 import com.anand.studentApp.models.Branch;
 import com.anand.studentApp.models.ContactInfo;
 import com.anand.studentApp.models.Department;
+import com.anand.studentApp.models.PasswordChange;
 import com.anand.studentApp.models.Role;
 import com.anand.studentApp.models.Sex;
 import com.anand.studentApp.models.SubjectSchedule;
@@ -25,6 +26,7 @@ public class Simulator {
 		addDepartments();
 		addSubjectSchedule();
 		addBooks();
+		addForgotPassQuestionAnswer();
 	}
 
 	// 25 students 5 in each branch
@@ -264,6 +266,43 @@ public class Simulator {
 
 		session.getTransaction().commit();
 
+	}
+	
+	public static void addForgotPassQuestionAnswer(){
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		
+		for(int i=1;i<=25;i++){
+			PasswordChange change = new PasswordChange();
+			change.setUserName("student"+i);
+			change.setQuestion("what is your home town?");
+			change.setAnswer("hometown");
+			session.save(change);
+		}
+		
+		for(int i=1;i<=5;i++){
+			PasswordChange change = new PasswordChange();
+			change.setUserName("teacher"+i);
+			change.setQuestion("what is your parent name?");
+			change.setAnswer("parent");
+			session.save(change);
+		}
+		
+		for(int i=1;i<=2;i++){
+			PasswordChange change = new PasswordChange();
+			change.setUserName("admin"+i);
+			change.setQuestion("what is your parent name?");
+			change.setAnswer("parent");
+			session.save(change);
+		}
+		
+		PasswordChange change = new PasswordChange();
+		change.setUserName("tpo1");
+		change.setQuestion("what is your parent name?");
+		change.setAnswer("parent");
+		session.save(change);
+		
+		session.getTransaction().commit();
 	}
 
 }

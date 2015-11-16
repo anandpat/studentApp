@@ -74,11 +74,11 @@ public class HomeController {
 
 	@RequestMapping(value = "/forgotPwd", method = RequestMethod.GET)
 	public String forgotPass(@ModelAttribute("PasswordChange") PasswordChange passwordChange, Model model) {
-		ArrayList<String> questionList = new ArrayList<String>();
+		/*ArrayList<String> questionList = new ArrayList<String>();
 		questionList.add("what is your home town?");
-		questionList.add("what is your parent name?");
+		questionList.add("what is your parent name?");*/
 		model.addAttribute("passwordChange", passwordChange);
-		model.addAttribute("questionList", questionList);
+	//	model.addAttribute("questionList", questionList);
 		return "passChange";
 
 	}

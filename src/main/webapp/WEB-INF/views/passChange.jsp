@@ -26,7 +26,9 @@
 					<td>question</td>
 					<td><form:select path="question">
 							<form:option value="" label="...." />
-							<form:options items="${questionList}" />
+							<form:option value="what is your home town?" label="what is your home town?" />
+							<form:option value="what is your parent name?" label="what is your parent name?" />
+							<%-- <form:options items="${questionList}" /> --%>
 						</form:select></td>
 				</tr>
 				<tr>
