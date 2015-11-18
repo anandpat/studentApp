@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.anand.studentApp.hibernate.dao.StudentDaoImpl;
 import com.anand.studentApp.models.PasswordChange;
@@ -21,6 +22,7 @@ import com.anand.studentApp.viewBeans.UserLoginBean;
  * Handles requests for the application home page.
  */
 @Controller
+@SessionAttributes("User")
 public class HomeController {
 
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
@@ -55,6 +57,7 @@ public class HomeController {
 		if (user != null && user.getPassword().equals(userLoginBean.getPassword())) {
 			// model.addAttribute("message", "hello world!!");
 			model.addAttribute("user", user);
+			model.addAttribute("User", userLoginBean);
 			if (user.getRole().equals(Role.STUDENT)) {
 				return "studentHome";
 			}
@@ -93,6 +96,13 @@ public class HomeController {
 			return "passChangeSuccess";
 		}
 		return "passChangeFail";
+	}
+	
+	@RequestMapping("/viewInfo")
+	public String viewUserInfo(){
+		
+		return null;
+		
 	}
 
 }

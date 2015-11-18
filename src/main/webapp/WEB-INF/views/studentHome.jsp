@@ -11,6 +11,7 @@
 		<h1>Hello world!</h1>
 		<h2>hi student ${user.fullName} !!</h2>
 		<br> <br> You Are loggedIn as a ${user.role}
+		<a href="viewInfo"></a>
 	</div>
 </body>
 </html>
