@@ -3,8 +3,11 @@ package com.anand.studentApp.controllers;
 
 import java.util.Locale;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -22,7 +25,7 @@ import com.anand.studentApp.viewBeans.UserLoginBean;
  * Handles requests for the application home page.
  */
 @Controller
-@SessionAttributes("User")
+@Scope("session")
 public class HomeController {
 
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
@@ -49,7 +52,7 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(@ModelAttribute("UserLoginBean") UserLoginBean userLoginBean, Model model) {
+	public String login(@ModelAttribute("UserLoginBean") UserLoginBean userLoginBean, Model model,HttpServletRequest request) {
 		// model.addAttribute("UserLoginBean", userLoginBean);
 		StudentDaoImpl daoImpl = new StudentDaoImpl();
 
@@ -58,6 +61,9 @@ public class HomeController {
 			// model.addAttribute("message", "hello world!!");
 			model.addAttribute("user", user);
 			model.addAttribute("User", userLoginBean);
+			
+			request.getSession().setAttribute("userInSession",user);
+			
 			if (user.getRole().equals(Role.STUDENT)) {
 				return "studentHome";
 			}
@@ -99,9 +105,10 @@ public class HomeController {
 	}
 	
 	@RequestMapping("/viewInfo")
-	public String viewUserInfo(){
-		
-		return null;
+	public String viewUserInfo(HttpServletRequest request){
+		User user = (User)request.getSession().getAttribute("userInSession");
+		logger.info("userInSession is : {}.", user);
+		return "viewInfo";
 		
 	}
 

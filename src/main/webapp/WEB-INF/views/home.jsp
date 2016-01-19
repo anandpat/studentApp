@@ -37,5 +37,9 @@
 		</form:form>
 		<a href="forgotPwd">Forgot Password???</a>
 	</div>
+	<br> <br> <br>
+	<div align="center">
+	<a href="shoppinghome">Start Shopping??</a>
+	</div>
 </body>
 </html>

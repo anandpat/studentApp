@@ -66,4 +66,9 @@ public class User {
 		this.contactInfo = contactInfo;
 	}
 
+	@Override
+	public String toString() {
+		return "User [userName=" + userName + ", fullName=" + fullName + ", branch=" + branch + ", role=" + role
+				+ ", sex=" + sex + "]";
+	}
 }
