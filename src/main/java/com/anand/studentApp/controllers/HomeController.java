@@ -104,9 +104,11 @@ public class HomeController {
 	}
 	
 	@RequestMapping("/viewInfo")
-	public String viewUserInfo(HttpServletRequest request){
+	public String viewUserInfo(HttpServletRequest request, Model model){
 		User user = (User)request.getSession().getAttribute("userInSession");
+		model.addAttribute("user", user);
 		logger.info("userInSession is : {}.", user);
+		logger.info("contact info is : {}.",user.getContactInfo());
 		return "viewInfo";
 		
 	}

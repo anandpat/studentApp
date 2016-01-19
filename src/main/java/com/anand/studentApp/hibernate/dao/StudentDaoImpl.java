@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 
 import com.anand.studentApp.controllers.HomeController;
 import com.anand.studentApp.hibernate.util.HibernateUtil;
+import com.anand.studentApp.models.ContactInfo;
 import com.anand.studentApp.models.PasswordChange;
 import com.anand.studentApp.models.User;
 
@@ -19,7 +20,10 @@ public class StudentDaoImpl implements StudentDao {
 		logger.info("getUser start username : {}",userName);
 		Session session = sessionFactory.openSession();
 		User user = (User) session.get(User.class, userName);
+		
 		if (user != null) {
+			/*ContactInfo contactInfo =(ContactInfo) session.get(ContactInfo.class, userName);
+			user.setContactInfo(contactInfo);*/
 			return user;
 		}
 		return null;
