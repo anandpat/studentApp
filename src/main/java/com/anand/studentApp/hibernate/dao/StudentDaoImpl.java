@@ -125,4 +125,15 @@ public class StudentDaoImpl implements StudentDao {
 		return res;
 	}
 
+	@Override
+	public void addNewUser(User newUser) {
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		logger.info("addNewUser() userData: {} ",newUser );
+		
+		session.save(newUser);
+		session.getTransaction().commit();
+		
+	}
+
 }

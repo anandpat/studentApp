@@ -15,7 +15,8 @@
 		<a href="viewInfo">View my profile |</a>
 		<a href="viewStudents">View All Students |</a>
 		<a href="viewTeachers">View All Teachers |</a>
-		<a href="viewTPO">View All TPO </a>
+		<a href="viewTPO">View All TPO |</a>
+		<a href="addUser">Add a USER |</a>
 	</div>
 </body>
 </html>

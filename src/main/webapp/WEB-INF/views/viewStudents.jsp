@@ -8,7 +8,8 @@
 <title>Student List</title>
 </head>
 <body>
-
+<h3><font color="red">Student List</font> </h3>
+	<font color=green>${message}</font>
 	<table style="width: 100%" border="1">
 		<tr>
 			<th>UserName</th>

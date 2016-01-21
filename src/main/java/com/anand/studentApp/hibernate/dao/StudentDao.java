@@ -22,4 +22,6 @@ public interface StudentDao {
 	public List<User> getAllTeachers();
 	
 	public List<User> getAllTPO();
+	
+	public void addNewUser(User newUser);
 }

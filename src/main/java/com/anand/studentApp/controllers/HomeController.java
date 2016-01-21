@@ -197,5 +197,104 @@ public class HomeController {
 		return "viewTPO";
 		
 	}
+	
+	@RequestMapping("/addUser")
+	public String addUser(Model model){
+		
+		return "addUser";
+		
+	}
+	
+	@RequestMapping("/addNewUser")
+	public String addNewUser(@RequestParam("userName") String userName,@RequestParam("password") String password,@RequestParam("fullName") String fullName,
+			@RequestParam("branch") String branch,@RequestParam("role") String role,
+			@RequestParam("sex") String sex,@RequestParam("parentName") String parentName,@RequestParam("primaryAdd") String primaryAdd,
+			@RequestParam("secondaryAdd") String secondaryAdd,@RequestParam("homePhone") String homePhone,
+			@RequestParam("mobileNum") String mobileNum,Model model){
+		
+		logger.info("addNewUser for userName  : {} fullName:{}", 
+				userName,fullName);
+		logger.info("password  : {}",password );
+		logger.info("branch:{} role:{}",branch,role);
+		logger.info("sex:{} parentName {}",sex,parentName);
+		logger.info("primaryAdd:{} secondaryAdd:{}",primaryAdd,secondaryAdd);
+		logger.info("homePhone:{} mobileNum:{}",homePhone,mobileNum);
+		
+		User newUser= new User();
+		newUser.setUserName(userName);
+		
+		
+		/*if(daoImpl.getUser(userName)==null && !(userName.isEmpty()) && !(userName.equals(""))){
+			model.addAttribute("availability", "UserName Available!!");
+			model.addAttribute("userName",userName);
+			return "addUser";
+		}else if(daoImpl.getUser(userName)!=null || (userName.isEmpty()) ){
+			model.addAttribute("availability", " UserName not Available!!");
+			model.addAttribute("userName",userName);
+			return "addUser";
+			
+			
+		}*/
+		
+		if(daoImpl.getUser(userName)!=null || (userName.isEmpty()) ){
+			model.addAttribute("availability", " UserName not Available!!");
+			model.addAttribute("userName",userName);
+			return "addUser";
+		}
+		
+		if(daoImpl.getUser(userName)==null && !(userName.isEmpty()) && !(userName.equals(""))){
+			model.addAttribute("availability", "UserName Available!!");
+			model.addAttribute("userName",userName);
+		
+		}
+		newUser.setFullName(fullName);
+		if(!(branch.equals(""))){
+		newUser.setBranch(Enum.valueOf(Branch.class, branch));
+		}
+		if(!(sex.equals(""))){
+		newUser.setSex(Enum.valueOf(Sex.class,sex));
+		}
+		if(!(role.equals(""))){
+		newUser.setRole(Enum.valueOf(Role.class,role));
+		}
+		newUser.setPassword(password);
+		ContactInfo contactInfo= new ContactInfo();
+		
+		//contactInfo.setUserName(newUser.getUserName());
+		contactInfo.setParentName(parentName);
+		contactInfo.setPrimaryAdd(primaryAdd);
+		contactInfo.setSecondaryAdd(secondaryAdd);
+		contactInfo.setHomePhone(homePhone);
+		contactInfo.setMobileNum(mobileNum);
+		contactInfo.setUser(newUser);
+		
+		newUser.setContactInfo(contactInfo);
+		if(!(branch.equals("")) && !(sex.equals("")) && !(role.equals("")) ){
+			daoImpl.addNewUser(newUser);
+			if(newUser.getRole().equals(Enum.valueOf(Role.class, "STUDENT"))){
+				model.addAttribute("message", "New Student Added!!!");
+				List<User> studentList= daoImpl.getAllStudents();
+				model.addAttribute("studentList",studentList);
+				return "viewStudents";
+			}else if(newUser.getRole().equals(Enum.valueOf(Role.class, "TEACHER"))){
+				model.addAttribute("message", "New Teacher Added!!!");
+				List<User> teacherList= daoImpl.getAllTeachers();
+				model.addAttribute("teacherList",teacherList);
+				return "viewTeachers";
+			}
+			else if(newUser.getRole().equals(Enum.valueOf(Role.class, "TPO"))){
+				model.addAttribute("message", "New TPO Added!!!");
+				List<User> tpoList= daoImpl.getAllTPO();
+				model.addAttribute("tpoList",tpoList);
+				return "viewTPO	";
+			}
+		} 
+		
+		return "addUser";
+		
+	}
+	
+	
+	
 
 }

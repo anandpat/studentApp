@@ -66,10 +66,5 @@ public class ContactInfo {
 		MobileNum = mobileNum;
 	}
 
-	@Override
-	public String toString() {
-		return "ContactInfo [user=" + user + ", userName=" + userName + ", parentName=" + parentName + ", primaryAdd="
-				+ primaryAdd + ", secondaryAdd=" + secondaryAdd + ", homePhone=" + homePhone + ", MobileNum="
-				+ MobileNum + "]";
-	}
+	
 }
