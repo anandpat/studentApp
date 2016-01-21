@@ -1,5 +1,7 @@
 package com.anand.studentApp.hibernate.dao;
 
+import java.util.List;
+
 import com.anand.studentApp.models.PasswordChange;
 import com.anand.studentApp.models.User;
 
@@ -14,4 +16,10 @@ public interface StudentDao {
 	public void changePassword(String username, String newPassword);
 	
 	public void updateUser(User user);
+	
+	public List<User> getAllStudents();
+	
+	public List<User> getAllTeachers();
+	
+	public List<User> getAllTPO();
 }

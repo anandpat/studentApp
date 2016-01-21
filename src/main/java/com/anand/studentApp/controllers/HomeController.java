@@ -1,6 +1,7 @@
 package com.anand.studentApp.controllers;
 
 
+import java.util.List;
 import java.util.Locale;
 
 import javax.persistence.EnumType;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.anand.studentApp.hibernate.dao.StudentDaoImpl;
 import com.anand.studentApp.models.Branch;
@@ -30,6 +32,7 @@ import com.anand.studentApp.viewBeans.UserLoginBean;
  */
 @Controller
 @Scope("session")
+
 public class HomeController {
 
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
@@ -166,6 +169,32 @@ public class HomeController {
 		
 		model.addAttribute("user",UpdateUser );
 		return "updateProfile";
+	}
+	
+	@RequestMapping("/viewStudents")
+	public String viewAllStudents(Model model){
+		List<User> studentList= daoImpl.getAllStudents();
+		model.addAttribute("studentList",studentList);
+		
+		return "viewStudents";
+		
+	}
+	
+	@RequestMapping("/viewTeachers")
+	public String viewAllTeachers(Model model){
+		List<User> teacherList= daoImpl.getAllTeachers();
+		model.addAttribute("teacherList",teacherList);
+		
+		return "viewTeachers";
+		
+	}
+	
+	@RequestMapping("/viewTPO")
+	public String viewAllTPO(Model model){
+		List<User> tpoList= daoImpl.getAllTPO();
+		model.addAttribute("tpoList",tpoList);
+		
+		return "viewTPO";
 		
 	}
 

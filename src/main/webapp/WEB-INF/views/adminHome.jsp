@@ -11,7 +11,11 @@
 		<h1>Hello world!</h1>
 		<h2>hi admin ${user.fullName}!!</h2>
 		<br> <br> You Are loggedIn as a ${user.role}
-		<a href="viewInfo">view my profile</a>
+		<br>
+		<a href="viewInfo">View my profile |</a>
+		<a href="viewStudents">View All Students |</a>
+		<a href="viewTeachers">View All Teachers |</a>
+		<a href="viewTPO">View All TPO </a>
 	</div>
 </body>
 </html>
