@@ -9,6 +9,7 @@
 <body>
 <div align="left">
 		<h1 align="center">profile of  ${user.fullName}!!</h1>
+<a href="editProfile">Edit my profile</a><br>
 <br><font color="red"> User name :</font> ${user.userName}
 <br><font color="red"> Full Name : </font>  ${user.fullName}
 <br><font color="red"> Branch :  </font>  ${user.branch}
@@ -17,9 +18,9 @@
 <br><font color="red">Parent Name : </font>   ${user.contactInfo.parentName}
 <br><font color="red">Primary Address : </font>   ${user.contactInfo.primaryAdd}
 <br><font color="red"> Secondary Address : </font>   ${user.contactInfo.secondaryAdd}
-<br><font color="red">home Phone : </font>   ${user.contactInfo.homePhone}
-<br><font color="red"> MobileNum : </font>   ${user.contactInfo.mobileNum}
-		
+<br><font color="red">Home Phone : </font>   ${user.contactInfo.homePhone}
+<br><font color="red"> Mobile Number : </font>   ${user.contactInfo.mobileNum}
+
 </div>
 </body>
 </html>

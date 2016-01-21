@@ -3,6 +3,7 @@ package com.anand.studentApp.controllers;
 
 import java.util.Locale;
 
+import javax.persistence.EnumType;
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
@@ -13,10 +14,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.anand.studentApp.hibernate.dao.StudentDaoImpl;
+import com.anand.studentApp.models.Branch;
+import com.anand.studentApp.models.ContactInfo;
 import com.anand.studentApp.models.PasswordChange;
 import com.anand.studentApp.models.Role;
+import com.anand.studentApp.models.Sex;
 import com.anand.studentApp.models.User;
 import com.anand.studentApp.viewBeans.UserLoginBean;
 
@@ -28,6 +33,7 @@ import com.anand.studentApp.viewBeans.UserLoginBean;
 public class HomeController {
 
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	StudentDaoImpl daoImpl = new StudentDaoImpl();
 
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -53,7 +59,7 @@ public class HomeController {
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String login(@ModelAttribute("UserLoginBean") UserLoginBean userLoginBean, Model model,HttpServletRequest request) {
 		// model.addAttribute("UserLoginBean", userLoginBean);
-		StudentDaoImpl daoImpl = new StudentDaoImpl();
+		
 
 		User user = daoImpl.getUser(userLoginBean.getUserName());
 		if (user != null && user.getPassword().equals(userLoginBean.getPassword())) {
@@ -94,7 +100,7 @@ public class HomeController {
 	@RequestMapping(value = "/validatePassChange", method = RequestMethod.POST)
 	public String validatPassChange(@ModelAttribute("PasswordChange") PasswordChange passwordChange, Model model) {
 		model.addAttribute("passwordChange", passwordChange);
-		StudentDaoImpl daoImpl = new StudentDaoImpl();
+		 
 		boolean pass = daoImpl.forgotPassChange(passwordChange);
 
 		if (pass) {
@@ -110,6 +116,56 @@ public class HomeController {
 		logger.info("userInSession is : {}.", user);
 		logger.info("contact info is : {}.",user.getContactInfo());
 		return "viewInfo";
+		
+	}
+	
+	@RequestMapping("/editProfile")
+	public String editProfile(HttpServletRequest request, Model model){
+		User user = (User)request.getSession().getAttribute("userInSession");
+		model.addAttribute("user", user);
+		
+		return "editProfile";
+	}
+	
+	@RequestMapping("/updateProfile")
+	public String updateProfile(@RequestParam("userName") String userName,@RequestParam("fullName") String fullName,
+			@RequestParam("branch") String branch,@RequestParam("role") String role,
+			@RequestParam("sex") String sex,@RequestParam("parentName") String parentName,@RequestParam("primaryAdd") String primaryAdd,
+			@RequestParam("secondaryAdd") String secondaryAdd,@RequestParam("homePhone") String homePhone,
+			@RequestParam("mobileNum") String mobileNum,HttpServletRequest request,Model model){
+		logger.info("update profile for userName  : {} fullName:{}", 
+				userName,fullName);
+		logger.info("branch:{} role:{}",branch,role);
+		logger.info("sex:{} parentName {}",sex,parentName);
+		logger.info("primaryAdd:{} secondaryAdd:{}",primaryAdd,secondaryAdd);
+		logger.info("homePhone:{} mobileNum:{}",homePhone,mobileNum);
+		
+		User user = (User)request.getSession().getAttribute("userInSession");
+		
+		User UpdateUser= new User();
+		UpdateUser.setUserName(userName);
+		UpdateUser.setFullName(fullName);
+		UpdateUser.setBranch(Enum.valueOf(Branch.class, branch));
+		UpdateUser.setSex(Enum.valueOf(Sex.class,sex));
+		UpdateUser.setRole(Enum.valueOf(Role.class,role));
+		UpdateUser.setPassword(user.getPassword());
+		ContactInfo contactInfo= new ContactInfo();
+		contactInfo.setUserName(UpdateUser.getUserName());
+		contactInfo.setParentName(parentName);
+		contactInfo.setPrimaryAdd(primaryAdd);
+		contactInfo.setSecondaryAdd(secondaryAdd);
+		contactInfo.setHomePhone(homePhone);
+		contactInfo.setMobileNum(mobileNum);
+		contactInfo.setUser(UpdateUser);
+		
+		UpdateUser.setContactInfo(contactInfo);
+		
+		daoImpl.updateUser(UpdateUser);
+		request.getSession().removeAttribute("userInSession");
+		request.getSession().setAttribute("userInSession",UpdateUser);
+		
+		model.addAttribute("user",UpdateUser );
+		return "updateProfile";
 		
 	}
 

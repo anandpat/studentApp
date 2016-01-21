@@ -62,4 +62,15 @@ public class StudentDaoImpl implements StudentDao {
 
 	}
 
+	@Override
+	public void updateUser(User updateUser) {
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		logger.info("update user data {}" , updateUser );
+		session.saveOrUpdate(updateUser);
+		
+		session.getTransaction().commit();
+		
+	}
+
 }

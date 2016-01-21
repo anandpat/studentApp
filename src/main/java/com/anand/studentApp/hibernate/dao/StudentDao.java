@@ -12,4 +12,6 @@ public interface StudentDao {
 	public boolean forgotPassChange(PasswordChange passwordChange);
 	
 	public void changePassword(String username, String newPassword);
+	
+	public void updateUser(User user);
 }
