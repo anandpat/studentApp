@@ -8,7 +8,7 @@
 </head>
 <body>
 <div align="left">
-		<h1 align="center">profile of  ${user.fullName}!!</h1>
+		<h1 align="center">Profile of  ${user.fullName}!!</h1>
 		<font color=green>${passChangeMessage}</font><br>
 <a href="editProfile">Edit my profile |</a>  <a href="changeMyPass">Change My Password </a> <br>
 <br><font color="red"> User name :</font> ${user.userName}

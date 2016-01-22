@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.anand.studentApp.models.Notification" table="Notification">
+
+		<id name="notificationId" type="int">
+			<column name="notificationId"  />
+			<generator class="increment"></generator> 
+		</id>
+		<property name="notificationFor" column="notificationFor">
+			<type name="org.hibernate.type.EnumType">
+				<param name="enumClass">com.anand.studentApp.models.NotificationFor</param>
+				<param name="useNamed">true</param>
+				<param name="type">12</param>
+			</type>
+		</property>
+
+		<property name="notification" type="string">
+			<column name="notification" not-null="true" />
+		</property>
+
+
+	</class>
+
+</hibernate-mapping>

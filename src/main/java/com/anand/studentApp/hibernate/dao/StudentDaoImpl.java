@@ -13,6 +13,8 @@ import org.slf4j.LoggerFactory;
 import com.anand.studentApp.controllers.HomeController;
 import com.anand.studentApp.hibernate.util.HibernateUtil;
 import com.anand.studentApp.models.ContactInfo;
+import com.anand.studentApp.models.Notification;
+import com.anand.studentApp.models.NotificationFor;
 import com.anand.studentApp.models.PasswordChange;
 import com.anand.studentApp.models.Role;
 import com.anand.studentApp.models.SubjectSchedule;
@@ -151,5 +153,18 @@ public class StudentDaoImpl implements StudentDao {
 		session.getTransaction().commit();
 		return subjectList;
 	}
+
+	@Override
+	public void addNotification(Notification notification) {
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		logger.info("addNotification()  for {} with message {} ",notification.getNotificationFor(),notification.getNotification() );
+		
+		session.save(notification);
+		session.getTransaction().commit();
+		
+	}
+
+	
 
 }

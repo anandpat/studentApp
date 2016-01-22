@@ -22,6 +22,8 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import com.anand.studentApp.hibernate.dao.StudentDaoImpl;
 import com.anand.studentApp.models.Branch;
 import com.anand.studentApp.models.ContactInfo;
+import com.anand.studentApp.models.Notification;
+import com.anand.studentApp.models.NotificationFor;
 import com.anand.studentApp.models.PasswordChange;
 import com.anand.studentApp.models.Role;
 import com.anand.studentApp.models.Sex;
@@ -347,6 +349,33 @@ public class HomeController {
 		
 	}
 	
+	@RequestMapping("/postNotification")
+	public String postNotification(HttpServletRequest request,Model model){
+		
+		User user = (User)request.getSession().getAttribute("userInSession");
+		logger.info("user in session is {} ", user );
+		model.addAttribute("user",user);
+		
+		return "noticationForm";
+		
+	}
+	
+	@RequestMapping("/addNotification")
+	public String addNotification(@RequestParam("notificationFor") String notificationFor,@RequestParam("notification") String notification,HttpServletRequest request,Model model){
+		User user = (User)request.getSession().getAttribute("userInSession");
+		logger.info("user in session is {} ", user );
+		logger.info("addNotification() notificationFor: {} notification{} ", notificationFor,notification );
+		model.addAttribute("user",user);
+		
+		Notification newNotification = new Notification();
+		newNotification.setNotificationFor(Enum.valueOf(NotificationFor.class, notificationFor));
+		newNotification.setNotification(notification);
+		
+		daoImpl.addNotification(newNotification);
+		model.addAttribute("notificationMsg", "Notification Posted for "+notificationFor);
+		return "adminHome";
+		
+	}
 	
 
 }

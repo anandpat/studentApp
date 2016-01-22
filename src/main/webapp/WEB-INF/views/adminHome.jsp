@@ -10,6 +10,7 @@
 	<div align="center">
 		<h1>Hello world!</h1>
 		<h2>hi admin ${user.fullName}!!</h2>
+		<font color=green>${notificationMsg}</font>
 		<br> <br> You Are loggedIn as a ${user.role}
 		<br>
 		<a href="viewInfo">View my profile |</a>
@@ -17,6 +18,7 @@
 		<a href="viewTeachers">View All Teachers |</a>
 		<a href="viewTPO">View All TPO |</a>
 		<a href="addUser">Add a USER |</a>
+		<a href="postNotification">Post Notification |</a>
 	</div>
 </body>
 </html>

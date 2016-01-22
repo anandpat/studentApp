@@ -40,7 +40,7 @@ public class Simulator {
 
 	// 25 students 5 in each branch
 	public static void addStudents() throws SerialException, SQLException {
-		for (int i = 1; i <= 25; i++) {
+		for (int i = 2; i <= 26; i++) {
 
 			Session session = sessionFactory.openSession();
 			session.beginTransaction();
@@ -76,7 +76,7 @@ public class Simulator {
 			user.setContactInfo(contactInfo);
 			
 			// for defaulf image
-			File file;
+			/*File file;
 			if(user.getSex().equals(Sex.MALE)){
 				file = new File("D:\\images\\male.jpg");
 				}else {
@@ -99,7 +99,7 @@ public class Simulator {
 	        photo.setImage(blob);
 	        
 	        photo.setUser(user);
-	        user.setPhoto(photo);
+	        user.setPhoto(photo);*/
 			// fpr default photo 
 	        
 	        
@@ -138,7 +138,7 @@ public class Simulator {
 			contactInfo.setUser(user);
 			user.setContactInfo(contactInfo);
 			
-			File file;
+			/*File file;
 			if(user.getSex().equals(Sex.MALE)){
 				file = new File("");
 				}else {
@@ -160,7 +160,7 @@ public class Simulator {
 	        photo.setImage(blob);
 	        
 	        photo.setUser(user);
-	        user.setPhoto(photo);
+	        user.setPhoto(photo);*/
 			// fpr default photo 
 			
 			session.persist(user);
@@ -197,7 +197,7 @@ public class Simulator {
 			contactInfo.setUser(user);
 			user.setContactInfo(contactInfo);
 			
-			File file;
+			/*File file;
 			if(user.getSex().equals(Sex.MALE)){
 				file = new File("D:\\images\\male.jpg");
 				}else {
@@ -219,7 +219,7 @@ public class Simulator {
 	        photo.setImage(blob);
 	        
 	        photo.setUser(user);
-	        user.setPhoto(photo);
+	        user.setPhoto(photo);*/
 			// fpr default photo 
 			
 			session.persist(user);
@@ -248,7 +248,7 @@ public class Simulator {
 		contactInfo.setUser(user);
 		user.setContactInfo(contactInfo);
 		
-		File file;
+		/*File file;
 		if(user.getSex().equals(Sex.MALE)){
 			file = new File("D:\\images\\male.jpg");
 			}else {
@@ -270,7 +270,7 @@ public class Simulator {
         photo.setImage(blob);
         
         photo.setUser(user);
-        user.setPhoto(photo);
+        user.setPhoto(photo);*/
 		// fpr default photo 
         
 		session.persist(user);
