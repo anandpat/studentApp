@@ -3,6 +3,7 @@ package com.anand.studentApp.hibernate.dao;
 import java.util.List;
 
 import com.anand.studentApp.models.PasswordChange;
+import com.anand.studentApp.models.SubjectSchedule;
 import com.anand.studentApp.models.User;
 
 public interface StudentDao {
@@ -24,4 +25,6 @@ public interface StudentDao {
 	public List<User> getAllTPO();
 	
 	public void addNewUser(User newUser);
+	
+	public List<SubjectSchedule> getAllSubjectForTeacher(String userName);
 }

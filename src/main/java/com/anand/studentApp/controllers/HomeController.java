@@ -25,6 +25,7 @@ import com.anand.studentApp.models.ContactInfo;
 import com.anand.studentApp.models.PasswordChange;
 import com.anand.studentApp.models.Role;
 import com.anand.studentApp.models.Sex;
+import com.anand.studentApp.models.SubjectSchedule;
 import com.anand.studentApp.models.User;
 import com.anand.studentApp.viewBeans.UserLoginBean;
 
@@ -331,6 +332,18 @@ public class HomeController {
 		model.addAttribute("passChangeMessage",passChangeMessage);
 		model.addAttribute("user",user);
 		return "viewInfo";
+		
+	}
+	
+	@RequestMapping("/viewMySubjects")
+	public String viewMySubjects(HttpServletRequest request,Model model){
+		
+		User user = (User)request.getSession().getAttribute("userInSession");
+		logger.info("user in session is {} ", user );
+		model.addAttribute("user",user);
+		List<SubjectSchedule> subjectList=daoImpl.getAllSubjectForTeacher(user.getUserName());
+		model.addAttribute("subjectList",subjectList);
+		return "viewMySubjects";
 		
 	}
 	

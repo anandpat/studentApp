@@ -11,8 +11,8 @@
 	<div align="center">
 		<h1>Hello world!</h1>
 		<h2>hi teacher ${user.fullName}</h2>
-		 <br> <br> You Are loggedIn as a ${user.role}
-		 <a href="viewInfo">view my profile</a>
+		 <br> <br> You Are loggedIn as a ${user.role}<br>
+		 <a href="viewInfo">view my profile |</a> <a href="viewMySubjects">view my Subjects</a>
 	</div>
 </body>
 </html>

@@ -15,6 +15,7 @@ import com.anand.studentApp.hibernate.util.HibernateUtil;
 import com.anand.studentApp.models.ContactInfo;
 import com.anand.studentApp.models.PasswordChange;
 import com.anand.studentApp.models.Role;
+import com.anand.studentApp.models.SubjectSchedule;
 import com.anand.studentApp.models.User;
 
 public class StudentDaoImpl implements StudentDao {
@@ -134,6 +135,21 @@ public class StudentDaoImpl implements StudentDao {
 		session.save(newUser);
 		session.getTransaction().commit();
 		
+	}
+
+	@Override
+	public List<SubjectSchedule> getAllSubjectForTeacher(String userName) {
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		logger.info("getAllSubjectForTeacher()");
+		
+		Criteria criteria= session.createCriteria(SubjectSchedule.class) ;
+		criteria.add(Restrictions.eq("teacher", userName));
+		List<SubjectSchedule> subjectList= (List<SubjectSchedule>)criteria.list();
+		logger.info("getAllSubjectForTeacher() reslut list count {}", subjectList.size());
+		
+		session.getTransaction().commit();
+		return subjectList;
 	}
 
 }
