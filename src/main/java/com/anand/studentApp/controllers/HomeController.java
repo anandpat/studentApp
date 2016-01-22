@@ -36,7 +36,7 @@ import com.anand.studentApp.viewBeans.UserLoginBean;
 public class HomeController {
 
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-	StudentDaoImpl daoImpl = new StudentDaoImpl();
+	private  StudentDaoImpl daoImpl = new StudentDaoImpl();
 
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -294,6 +294,44 @@ public class HomeController {
 		
 	}
 	
+	@RequestMapping("/changeMyPass")
+	public String changeMyPassword(HttpServletRequest request,Model model){
+		
+		User user = (User)request.getSession().getAttribute("userInSession");
+		logger.info("user in session is {} ", user );
+		model.addAttribute("user",user);
+		return "changeMyPass";
+		
+	}
+		
+	@RequestMapping("/manualPassChange")
+	public String manualPassChange(HttpServletRequest request,Model model ,@RequestParam("currPass") String currPass,@RequestParam("newPass") String newPass,
+			@RequestParam("confirmNewPass") String confirmNewPass){
+		
+		String passChangeMessage= "";
+		
+		User user = (User)request.getSession().getAttribute("userInSession");
+		logger.info("user in session is {} ", user );
+		
+		if(currPass!=null && !(currPass.equals(user.getPassword()))){
+			passChangeMessage= "current password enterd is not matching with user password!!";
+			model.addAttribute("passChangeMessage",passChangeMessage);
+			return "changeMyPass";
+		}
+		
+		if (newPass!=null && confirmNewPass!=null && !(newPass.equals(confirmNewPass))){
+			passChangeMessage= "Both occurence of new password is not matching!!";
+			model.addAttribute("passChangeMessage",passChangeMessage);
+			return "changeMyPass";
+		}
+		
+		daoImpl.changePassword(user.getUserName(), newPass);
+		passChangeMessage="password changed successfully ";
+		model.addAttribute("passChangeMessage",passChangeMessage);
+		model.addAttribute("user",user);
+		return "viewInfo";
+		
+	}
 	
 	
 
