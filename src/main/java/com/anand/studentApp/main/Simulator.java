@@ -1,5 +1,13 @@
 package com.anand.studentApp.main;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.sql.Blob;
+import java.sql.SQLException;
+
+import javax.sql.rowset.serial.SerialException;
+
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
@@ -9,6 +17,7 @@ import com.anand.studentApp.models.Branch;
 import com.anand.studentApp.models.ContactInfo;
 import com.anand.studentApp.models.Department;
 import com.anand.studentApp.models.PasswordChange;
+import com.anand.studentApp.models.Photo;
 import com.anand.studentApp.models.Role;
 import com.anand.studentApp.models.Sex;
 import com.anand.studentApp.models.SubjectSchedule;
@@ -18,7 +27,7 @@ public class Simulator {
 
 	private static SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws SerialException, SQLException {
 		addStudents();
 		addTeachers();
 		addAdmin();
@@ -30,7 +39,7 @@ public class Simulator {
 	}
 
 	// 25 students 5 in each branch
-	public static void addStudents() {
+	public static void addStudents() throws SerialException, SQLException {
 		for (int i = 1; i <= 25; i++) {
 
 			Session session = sessionFactory.openSession();
@@ -65,6 +74,35 @@ public class Simulator {
 			contactInfo.setSecondaryAdd("SecondaryAdd" + i);
 			contactInfo.setUser(user);
 			user.setContactInfo(contactInfo);
+			
+			// for defaulf image
+			File file;
+			if(user.getSex().equals(Sex.MALE)){
+				file = new File("D:\\images\\male.jpg");
+				}else {
+					 file = new File("D:\\images\\female.jpg");
+				}
+	        byte[] bFile = new byte[(int) file.length()];
+	        
+	        try {
+		     FileInputStream fileInputStream = new FileInputStream(file);
+		     //convert file into array of bytes
+		     fileInputStream.read(bFile);
+		     fileInputStream.close();
+	        } catch (Exception e) {
+		     e.printStackTrace();
+	        }
+	        // convert byte array to blob 
+	        Blob blob = new javax.sql.rowset.serial.SerialBlob(bFile);
+	        
+	        Photo photo= new Photo();
+	        photo.setImage(blob);
+	        
+	        photo.setUser(user);
+	        user.setPhoto(photo);
+			// fpr default photo 
+	        
+	        
 			session.persist(user);
 
 			session.getTransaction().commit();
@@ -74,7 +112,7 @@ public class Simulator {
 	}
 
 	// 5 teacher
-	public static void addTeachers() {
+	public static void addTeachers() throws SerialException, SQLException {
 		for (int i = 1; i <= 5; i++) {
 			Session session = sessionFactory.openSession();
 			session.beginTransaction();
@@ -99,6 +137,32 @@ public class Simulator {
 			contactInfo.setSecondaryAdd("TSecondaryAdd" + i);
 			contactInfo.setUser(user);
 			user.setContactInfo(contactInfo);
+			
+			File file;
+			if(user.getSex().equals(Sex.MALE)){
+				file = new File("");
+				}else {
+					 file = new File("D:\\images\\female.jpg");
+				}
+	        byte[] bFile = new byte[(int) file.length()];
+	        
+	        try {
+		     FileInputStream fileInputStream = new FileInputStream(file);
+		     //convert file into array of bytes
+		     fileInputStream.read(bFile);
+		     fileInputStream.close();
+	        } catch (Exception e) {
+		     e.printStackTrace();
+	        }
+	     // convert byte array to blob 
+	        Blob blob = new javax.sql.rowset.serial.SerialBlob(bFile);
+	        Photo photo= new Photo();
+	        photo.setImage(blob);
+	        
+	        photo.setUser(user);
+	        user.setPhoto(photo);
+			// fpr default photo 
+			
 			session.persist(user);
 
 			session.getTransaction().commit();
@@ -107,7 +171,7 @@ public class Simulator {
 	}
 
 	// 2 admin users
-	public static void addAdmin() {
+	public static void addAdmin() throws SerialException, SQLException {
 		for (int i = 1; i <= 2; i++) {
 			Session session = sessionFactory.openSession();
 			session.beginTransaction();
@@ -132,6 +196,32 @@ public class Simulator {
 			contactInfo.setSecondaryAdd("ASecondaryAdd" + i);
 			contactInfo.setUser(user);
 			user.setContactInfo(contactInfo);
+			
+			File file;
+			if(user.getSex().equals(Sex.MALE)){
+				file = new File("D:\\images\\male.jpg");
+				}else {
+					 file = new File("D:\\images\\female.jpg");
+				}
+	        byte[] bFile = new byte[(int) file.length()];
+	        
+	        try {
+		     FileInputStream fileInputStream = new FileInputStream(file);
+		     //convert file into array of bytes
+		     fileInputStream.read(bFile);
+		     fileInputStream.close();
+	        } catch (Exception e) {
+		     e.printStackTrace();
+	        }
+	        Blob blob = new javax.sql.rowset.serial.SerialBlob(bFile);
+	        
+	        Photo photo= new Photo();
+	        photo.setImage(blob);
+	        
+	        photo.setUser(user);
+	        user.setPhoto(photo);
+			// fpr default photo 
+			
 			session.persist(user);
 
 			session.getTransaction().commit();
@@ -139,7 +229,7 @@ public class Simulator {
 	}
 
 	// 1 tpo
-	public static void addTpo() {
+	public static void addTpo() throws SerialException, SQLException {
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 		User user = new User();
@@ -157,6 +247,32 @@ public class Simulator {
 		contactInfo.setSecondaryAdd("TPSecondaryAdd");
 		contactInfo.setUser(user);
 		user.setContactInfo(contactInfo);
+		
+		File file;
+		if(user.getSex().equals(Sex.MALE)){
+			file = new File("D:\\images\\male.jpg");
+			}else {
+				 file = new File("D:\\images\\female.jpg");
+			}
+        byte[] bFile = new byte[(int) file.length()];
+        
+        try {
+	     FileInputStream fileInputStream = new FileInputStream(file);
+	     //convert file into array of bytes
+	     fileInputStream.read(bFile);
+	     fileInputStream.close();
+        } catch (Exception e) {
+	     e.printStackTrace();
+        }
+        
+        Blob blob = new javax.sql.rowset.serial.SerialBlob(bFile);
+        Photo photo= new Photo();
+        photo.setImage(blob);
+        
+        photo.setUser(user);
+        user.setPhoto(photo);
+		// fpr default photo 
+        
 		session.persist(user);
 
 		session.getTransaction().commit();

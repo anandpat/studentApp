@@ -12,6 +12,7 @@
 		<h2>hi student ${user.fullName} !!</h2>
 		<br> <br> You Are loggedIn as a ${user.role}
 		<a href="viewInfo">view my profile</a>
+		<%-- <img src="<%=session.getAttribute("user.photo.image")%>" alt="Upload Image" width="200" height="200" /> --%>
 	</div>
 </body>
 </html>

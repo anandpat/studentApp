@@ -6,6 +6,7 @@ import java.util.Locale;
 
 import javax.persistence.EnumType;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -60,10 +61,10 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(@ModelAttribute("UserLoginBean") UserLoginBean userLoginBean, Model model,HttpServletRequest request) {
+	public String login(@ModelAttribute("UserLoginBean") UserLoginBean userLoginBean, Model model,HttpServletRequest request,HttpServletResponse response) {
 		// model.addAttribute("UserLoginBean", userLoginBean);
 		
-
+		response.setContentType("image/jpeg");
 		User user = daoImpl.getUser(userLoginBean.getUserName());
 		if (user != null && user.getPassword().equals(userLoginBean.getPassword())) {
 			// model.addAttribute("message", "hello world!!");

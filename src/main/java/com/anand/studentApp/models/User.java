@@ -9,7 +9,7 @@ public class User {
 	private Role role;
 	private Sex sex;
 	private ContactInfo contactInfo;
-
+	private Photo photo;
 	public String getFullName() {
 		return fullName;
 	}
@@ -64,6 +64,14 @@ public class User {
 
 	public void setContactInfo(ContactInfo contactInfo) {
 		this.contactInfo = contactInfo;
+	}
+
+	public Photo getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(Photo photo) {
+		this.photo = photo;
 	}
 
 	@Override

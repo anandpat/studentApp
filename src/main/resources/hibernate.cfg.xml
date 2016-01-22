@@ -32,5 +32,6 @@
 		<mapping resource="com/anand/studentApp/HibernateMapping/Book.hbm.xml"></mapping>
 		<mapping resource="com/anand/studentApp/HibernateMapping/BookIssue.hbm.xml"></mapping>
 		<mapping resource="com/anand/studentApp/HibernateMapping/PasswordChange.hbm.xml"></mapping>
+		<mapping resource="com/anand/studentApp/HibernateMapping/Photo.hbm.xml"></mapping>
 	</session-factory>
 </hibernate-configuration>

@@ -47,5 +47,7 @@
 
 		<one-to-one name="contactInfo" class="com.anand.studentApp.models.ContactInfo"
 			cascade="save-update"></one-to-one>
+		<one-to-one name="photo" class="com.anand.studentApp.models.Photo"
+			cascade="save-update"></one-to-one>
 	</class>
 </hibernate-mapping>
