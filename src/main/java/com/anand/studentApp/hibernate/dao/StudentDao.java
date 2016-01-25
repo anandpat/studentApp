@@ -3,6 +3,7 @@ package com.anand.studentApp.hibernate.dao;
 import java.util.List;
 
 import com.anand.studentApp.models.Book;
+import com.anand.studentApp.models.BookIssue;
 import com.anand.studentApp.models.Notification;
 import com.anand.studentApp.models.PasswordChange;
 import com.anand.studentApp.models.Role;
@@ -38,4 +39,8 @@ public interface StudentDao {
 	public List<Book> getbookList();
 	
 	public void registerForBook(String bookId, String userName);
+	
+	public List<BookIssue> getMybooks(String username);
+	
+	public void returnBook(String bookId, String userName);
 }

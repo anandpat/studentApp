@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.anand.studentApp.hibernate.dao.StudentDaoImpl;
 import com.anand.studentApp.models.Book;
+import com.anand.studentApp.models.BookIssue;
 import com.anand.studentApp.models.Branch;
 import com.anand.studentApp.models.ContactInfo;
 import com.anand.studentApp.models.Notification;
@@ -126,7 +127,6 @@ public class HomeController {
 		User user = (User)request.getSession().getAttribute("userInSession");
 		model.addAttribute("user", user);
 		logger.info("userInSession is : {}.", user);
-		logger.info("contact info is : {}.",user.getContactInfo());
 		return "viewInfo";
 		
 	}
@@ -411,6 +411,37 @@ public class HomeController {
 		
 		logger.info("registerForBook()>> userName: {} ,bookId: {}", userName,bookId );
 		daoImpl.registerForBook(bookId, userName);
+		List<Book> bookList= daoImpl.getbookList();
+		model.addAttribute("bookList",bookList);
+		
+		return "libraryHome";
+		
+	}
+	
+	@RequestMapping("/mybooks")
+	public String mybooks(HttpServletRequest request,Model model){
+		
+		User user = (User)request.getSession().getAttribute("userInSession");
+		logger.info("user in session is {} ", user );
+		model.addAttribute("user",user);
+		List<BookIssue> bookList= daoImpl.getMybooks(user.getUserName());
+		model.addAttribute("bookList",bookList);
+		
+		logger.info("mybook size is {} ", bookList.size() );
+		return "viewMybooks";
+		
+	}
+	
+	@RequestMapping("/returnBook/{userName}/{bookId}")
+	public String returnBook(@PathVariable("userName") String userName,@PathVariable("bookId") String bookId,HttpServletRequest request,Model model){
+		
+		User user = (User)request.getSession().getAttribute("userInSession");
+		logger.info("user in session is {} ", user );
+		model.addAttribute("user",user);
+		
+		logger.info("returnBook()>> userName: {} ,bookId: {}", userName,bookId );
+		daoImpl.returnBook(bookId, userName);
+		
 		List<Book> bookList= daoImpl.getbookList();
 		model.addAttribute("bookList",bookList);
 		

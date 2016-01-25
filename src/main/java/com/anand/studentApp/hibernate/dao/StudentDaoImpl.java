@@ -246,6 +246,35 @@ public class StudentDaoImpl implements StudentDao {
 		session.getTransaction().commit();
 	}
 
+	@Override
+	public List<BookIssue> getMybooks(String userName) {
+		
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		Criteria criteria= session.createCriteria(BookIssue.class) ;
+		
+		criteria.add(Restrictions.eq("userName", userName));
+		List<BookIssue> bookList= (List<BookIssue>)criteria.list();
+		
+		session.getTransaction().commit();
+		return bookList;
+	}
+
+	@Override
+	public void returnBook(String bookId, String userName) {
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		
+		Book book= (Book) session.get(Book.class, bookId);
+		book.setIsAvailable('Y');
+		session.merge(book);
+		BookIssue bookIssue= (BookIssue) session.get(BookIssue.class, bookId);
+		session.delete(bookIssue);
+		
+		session.getTransaction().commit();
+		
+	}
+
 	
 
 	
