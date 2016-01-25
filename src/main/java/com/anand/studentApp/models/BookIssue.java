@@ -2,17 +2,17 @@ package com.anand.studentApp.models;
 
 public class BookIssue {
 
-	private Book book;
+	//private Book book;
 	private String bookId;
 	private String userName;
 
-	public Book getBook() {
+	/*public Book getBook() {
 		return book;
 	}
 
 	public void setBook(Book book) {
 		this.book = book;
-	}
+	}*/
 
 	public String getBookId() {
 		return bookId;

@@ -14,12 +14,14 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.anand.studentApp.hibernate.dao.StudentDaoImpl;
+import com.anand.studentApp.models.Book;
 import com.anand.studentApp.models.Branch;
 import com.anand.studentApp.models.ContactInfo;
 import com.anand.studentApp.models.Notification;
@@ -387,6 +389,33 @@ public class HomeController {
 		return count;
 	}
 	
+	@RequestMapping("/library")
+	public String library(HttpServletRequest request,Model model){
+		
+		User user = (User)request.getSession().getAttribute("userInSession");
+		logger.info("user in session is {} ", user );
+		model.addAttribute("user",user);
+		List<Book> bookList= daoImpl.getbookList();
+		model.addAttribute("bookList",bookList);
+		
+		return "libraryHome";
+		
+	}
 	
+	@RequestMapping("/registerForBook/{userName}/{bookId}")
+	public String registerForBook(@PathVariable("userName") String userName,@PathVariable("bookId") String bookId,HttpServletRequest request,Model model){
+		
+		User user = (User)request.getSession().getAttribute("userInSession");
+		logger.info("user in session is {} ", user );
+		model.addAttribute("user",user);
+		
+		logger.info("registerForBook()>> userName: {} ,bookId: {}", userName,bookId );
+		daoImpl.registerForBook(bookId, userName);
+		List<Book> bookList= daoImpl.getbookList();
+		model.addAttribute("bookList",bookList);
+		
+		return "libraryHome";
+		
+	}
 
 }

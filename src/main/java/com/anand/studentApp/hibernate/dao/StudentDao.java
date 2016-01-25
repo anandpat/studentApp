@@ -2,6 +2,7 @@ package com.anand.studentApp.hibernate.dao;
 
 import java.util.List;
 
+import com.anand.studentApp.models.Book;
 import com.anand.studentApp.models.Notification;
 import com.anand.studentApp.models.PasswordChange;
 import com.anand.studentApp.models.Role;
@@ -33,4 +34,8 @@ public interface StudentDao {
 	public void addNotification(Notification notification );
 	
 	public int getnotificationCount(Role role);
+	
+	public List<Book> getbookList();
+	
+	public void registerForBook(String bookId, String userName);
 }

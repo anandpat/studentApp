@@ -40,7 +40,7 @@ public class Simulator {
 
 	// 25 students 5 in each branch
 	public static void addStudents() throws SerialException, SQLException {
-		for (int i = 2; i <= 26; i++) {
+		for (int i = 1; i <= 25; i++) {
 
 			Session session = sessionFactory.openSession();
 			session.beginTransaction();

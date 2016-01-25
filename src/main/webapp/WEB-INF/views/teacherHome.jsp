@@ -12,7 +12,7 @@
 		<h1>Hello world!</h1>
 		<h2>hi teacher ${user.fullName}</h2>
 		 <br> <br> You Are loggedIn as a ${user.role}<br>
-		 <a href="viewInfo">view my profile |</a> <a href="viewMySubjects">view my Subjects |</a><a href="viewNotification">Notifications</a>(${notificationCount})
+		 <a href="viewInfo">view my profile |</a> <a href="viewMySubjects">view my Subjects |</a><a href="viewNotification">Notifications</a>(${notificationCount}) | <a href="library">Library</a>
 	</div>
 </body>
 </html>

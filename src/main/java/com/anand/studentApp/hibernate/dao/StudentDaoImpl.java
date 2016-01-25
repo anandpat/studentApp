@@ -13,6 +13,8 @@ import org.slf4j.LoggerFactory;
 
 import com.anand.studentApp.controllers.HomeController;
 import com.anand.studentApp.hibernate.util.HibernateUtil;
+import com.anand.studentApp.models.Book;
+import com.anand.studentApp.models.BookIssue;
 import com.anand.studentApp.models.ContactInfo;
 import com.anand.studentApp.models.Notification;
 import com.anand.studentApp.models.NotificationFor;
@@ -201,6 +203,7 @@ public class StudentDaoImpl implements StudentDao {
 			}
 			
 		}
+		session.getTransaction().commit();
 		
 		if(role.equals(Enum.valueOf(Role.class, "STUDENT"))){
 			return countStudent;
@@ -211,6 +214,39 @@ public class StudentDaoImpl implements StudentDao {
 		} else 
 		return countAll;
 	}
+
+	@Override
+	public List<Book> getbookList() {
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		
+		Criteria criteria= session.createCriteria(Book.class) ;
+		List<Book> bookList= (List<Book>)criteria.list();
+		return bookList;
+	}
+
+	@Override
+	public void registerForBook(String bookId, String userName) {
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		
+		Book book= (Book) session.get(Book.class, bookId);
+		book.setIsAvailable('N');
+		
+		session.merge(book);
+		
+		BookIssue bookIssue= new BookIssue();
+		bookIssue.setBookId(bookId);
+		bookIssue.setUserName(userName);
+		
+		session.save(bookIssue);
+		
+		
+		//session.save(bookIssue);
+		session.getTransaction().commit();
+	}
+
+	
 
 	
 

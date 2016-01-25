@@ -2,7 +2,7 @@
 <!DOCTYPE hibernate-mapping PUBLIC
         "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-
+<!-- 
 <hibernate-mapping>
 
 	<class name="com.anand.studentApp.models.BookIssue" table="bookIssue">
@@ -15,6 +15,23 @@
 		</id>
 		<one-to-one name="book" class="com.anand.studentApp.models.Book"
 			constrained="true"></one-to-one>
+
+		<property name="userName" type="string">
+			<column name="userName" length="20" not-null="true" />
+		</property>
+
+	</class>
+
+</hibernate-mapping> -->
+
+<hibernate-mapping>
+
+	<class name="com.anand.studentApp.models.BookIssue" table="bookIssue">
+
+		<id name="bookId" type="string">
+			<column name="bookId" length="20" />
+			
+		</id>
 
 		<property name="userName" type="string">
 			<column name="userName" length="20" not-null="true" />

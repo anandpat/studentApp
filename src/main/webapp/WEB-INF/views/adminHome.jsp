@@ -18,7 +18,7 @@
 		<a href="viewTeachers">View All Teachers |</a>
 		<a href="viewTPO">View All TPO |</a>
 		<a href="addUser">Add a USER |</a>
-		<a href="postNotification">Post Notification |</a>
+		<a href="postNotification">Post Notification |</a><a href="library">Library</a>
 	</div>
 </body>
 </html>

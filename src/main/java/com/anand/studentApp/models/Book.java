@@ -5,15 +5,15 @@ public class Book {
 	private String bookId;
 	private String bookName;
 	private char isAvailable;
-	private BookIssue issue;
+	//private BookIssue issue;
 
-	public BookIssue getIssue() {
+	/*public BookIssue getIssue() {
 		return issue;
 	}
 
 	public void setIssue(BookIssue issue) {
 		this.issue = issue;
-	}
+	}*/
 
 	public String getBookId() {
 		return bookId;
