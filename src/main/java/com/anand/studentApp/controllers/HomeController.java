@@ -69,13 +69,16 @@ public class HomeController {
 		
 		response.setContentType("image/jpeg");
 		User user = daoImpl.getUser(userLoginBean.getUserName());
+		
+		
 		if (user != null && user.getPassword().equals(userLoginBean.getPassword())) {
 			// model.addAttribute("message", "hello world!!");
 			model.addAttribute("user", user);
 			model.addAttribute("User", userLoginBean);
 			
 			request.getSession().setAttribute("userInSession",user);
-			
+			int notificationCount=notifiacationCount(user);
+			model.addAttribute("notificationCount", notificationCount);
 			if (user.getRole().equals(Role.STUDENT)) {
 				return "studentHome";
 			}
@@ -376,6 +379,14 @@ public class HomeController {
 		return "adminHome";
 		
 	}
+	
+	private int notifiacationCount(User user){
+		
+		int count= daoImpl.getnotificationCount(user.getRole());
+		logger.info("Notification Count is {} ", count );
+		return count;
+	}
+	
 	
 
 }

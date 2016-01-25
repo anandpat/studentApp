@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.anand.studentApp.models.Notification;
 import com.anand.studentApp.models.PasswordChange;
+import com.anand.studentApp.models.Role;
 import com.anand.studentApp.models.SubjectSchedule;
 import com.anand.studentApp.models.User;
 
@@ -30,4 +31,6 @@ public interface StudentDao {
 	public List<SubjectSchedule> getAllSubjectForTeacher(String userName);
 	
 	public void addNotification(Notification notification );
+	
+	public int getnotificationCount(Role role);
 }

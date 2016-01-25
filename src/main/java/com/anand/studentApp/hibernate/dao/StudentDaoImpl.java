@@ -1,5 +1,6 @@
 package com.anand.studentApp.hibernate.dao;
 
+import java.util.Iterator;
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -163,6 +164,52 @@ public class StudentDaoImpl implements StudentDao {
 		session.save(notification);
 		session.getTransaction().commit();
 		
+	}
+
+	@Override
+	public int getnotificationCount(Role role) {
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		int countStudent=0;
+		int countTeacher=0;
+		int countCollege=0;
+		int countAll=0;
+		
+		Criteria criteria= session.createCriteria(Notification.class) ;
+		List<Notification> notificationList= (List<Notification>)criteria.list();
+		
+		for (Iterator iterator = notificationList.iterator(); iterator.hasNext();) {
+			Notification notification = (Notification) iterator.next();
+			if(notification.getNotificationFor().equals(Enum.valueOf(NotificationFor.class, "STUDENT"))){
+				countStudent++;
+				countCollege++;
+				countAll++;
+			} else if(notification.getNotificationFor().equals(Enum.valueOf(NotificationFor.class, "TEACHER"))){
+				countTeacher++;
+				countCollege++;
+				countAll++;
+			} else if(notification.getNotificationFor().equals(Enum.valueOf(NotificationFor.class, "COLLEGE"))){
+				countStudent++;
+				countTeacher++;
+				countCollege++;
+				countAll++;
+			}else{
+				countStudent++;
+				countTeacher++;
+				countCollege++;
+				countAll++;
+			}
+			
+		}
+		
+		if(role.equals(Enum.valueOf(Role.class, "STUDENT"))){
+			return countStudent;
+		}else if(role.equals(Enum.valueOf(Role.class, "TEACHER"))){
+			return countTeacher;
+		} else if(role.equals(Enum.valueOf(Role.class, "TPO"))){
+			return countCollege;
+		} else 
+		return countAll;
 	}
 
 	
