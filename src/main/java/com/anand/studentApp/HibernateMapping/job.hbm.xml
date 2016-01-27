@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+	<class name="com.anand.studentApp.models.Job" table="Job">
+
+		<id name="jobId" type="string">
+			<column name="jobId" length="20" />
+		</id>
+
+		<!-- <property name="userId" type="java.lang.Integer"> <column name="userId" 
+			/> <generator class="increment" /> </property> -->
+		<property name="compId" type="string">
+			<column name="compId" length="20" not-null="true" />
+		</property>
+
+		<property name="positionName" type="string">
+			<column name="positionName" length="20" not-null="true" />
+		</property>
+
+		<property name="YOP" type="string">
+			<column name="YOP" length="20" not-null="true" />
+		</property>
+		
+		<property name="minPersentange" type="int">
+			<column name="minPersentange" length="20" not-null="true" />
+		</property>
+		
+		<property name="sal" type="double">
+			<column name="sal" length="20" not-null="true" />
+		</property>
+		
+		<property name="Status" column="Status">
+			<type name="org.hibernate.type.EnumType">
+				<param name="enumClass">com.anand.studentApp.models.Status</param>
+				<param name="useNamed">true</param>
+				<param name="type">12</param>
+			</type>
+		</property>
+		
+		<property name="contactNo" type="string">
+			<column name="contactNo" length="20" not-null="true" />
+		</property>
+		
+		<one-to-one name="skillsRequied" class="com.anand.studentApp.models.SkillForJob"
+			cascade="save-update"></one-to-one>
+			
+		<!-- <property name="branch" column="branch">
+			<type name="org.hibernate.type.EnumType">
+				<param name="enumClass">com.anand.studentApp.models.Branch</param>
+				<param name="useNamed">true</param>
+				<param name="type">12</param>
+			</type>
+		</property>
+
+		<property name="role" column="role">
+			<type name="org.hibernate.type.EnumType">
+				<param name="enumClass">com.anand.studentApp.models.Role</param>
+				<param name="useNamed">true</param>
+				<param name="type">12</param>
+			</type>
+		</property>
+
+		<property name="sex" column="sex">
+			<type name="org.hibernate.type.EnumType">
+				<param name="enumClass">com.anand.studentApp.models.Sex</param>
+				<param name="useNamed">true</param>
+				<param name="type">12</param>
+			</type>
+		</property>
+
+		<one-to-one name="contactInfo" class="com.anand.studentApp.models.ContactInfo"
+			cascade="save-update"></one-to-one>
+		<one-to-one name="photo" class="com.anand.studentApp.models.Photo"
+			cascade="save-update"></one-to-one> -->
+	</class>
+</hibernate-mapping>

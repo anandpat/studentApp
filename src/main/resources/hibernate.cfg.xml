@@ -34,5 +34,10 @@
 		<mapping resource="com/anand/studentApp/HibernateMapping/PasswordChange.hbm.xml"></mapping>
 		<!-- <mapping resource="com/anand/studentApp/HibernateMapping/Photo.hbm.xml"></mapping> -->
 		<mapping resource="com/anand/studentApp/HibernateMapping/notification.hbm.xml"></mapping>
+		
+		<mapping resource="com/anand/studentApp/HibernateMapping/Company.hbm.xml"></mapping>
+		<mapping resource="com/anand/studentApp/HibernateMapping/job.hbm.xml"></mapping>
+		<mapping resource="com/anand/studentApp/HibernateMapping/skill.hbm.xml"></mapping>
+		<mapping resource="com/anand/studentApp/HibernateMapping/skillForJob.hbm.xml"></mapping>
 	</session-factory>
 </hibernate-configuration>
