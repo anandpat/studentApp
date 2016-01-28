@@ -1,25 +1,29 @@
 package com.anand.studentApp.main;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.sql.Blob;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import javax.sql.rowset.serial.SerialException;
 
-import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import com.anand.studentApp.hibernate.util.HibernateUtil;
 import com.anand.studentApp.models.Book;
 import com.anand.studentApp.models.Branch;
+import com.anand.studentApp.models.Company;
 import com.anand.studentApp.models.ContactInfo;
 import com.anand.studentApp.models.Department;
+import com.anand.studentApp.models.Job;
 import com.anand.studentApp.models.PasswordChange;
-import com.anand.studentApp.models.Photo;
 import com.anand.studentApp.models.Role;
 import com.anand.studentApp.models.Sex;
+import com.anand.studentApp.models.Skill;
+import com.anand.studentApp.models.SkillForJob;
+import com.anand.studentApp.models.Status;
 import com.anand.studentApp.models.SubjectSchedule;
 import com.anand.studentApp.models.User;
 
@@ -36,6 +40,8 @@ public class Simulator {
 		addSubjectSchedule();
 		addBooks();
 		addForgotPassQuestionAnswer();
+		addCompany();
+		addJob();
 	}
 
 	// 25 students 5 in each branch
@@ -420,5 +426,74 @@ public class Simulator {
 		
 		session.getTransaction().commit();
 	}
+	
+	public static void addCompany(){
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		
+		
+		for(int i=1;i<=5;i++){
+			Company company = new Company();
+			company.setCompId("comp"+i);
+			company.setPassword("comp"+i);
+			company.setCompanyName("company "+i);
+			company.setCompDetail("company details of company "+i);
+			session.save(company);
+			
+		}
+		
+		session.getTransaction().commit();
+		
+	}
+	
+	public static void addJob(){
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		
+		
+		for(int i=1;i<=1;i++){
+			Job job = new Job();
+			job.setJobId("job"+i);
+			job.setCompId("comp"+i);
+			
+		job.setContactNo("1233234234"+1);
+		job.setMinPersentange(60+i);
+		job.setPositionName("SE"+i);
+		job.setSal(24000+i);
+		job.setStatus(Status.APPROVED);
+		job.setYOP("2000");
+		
+		Skill skill1= new Skill();
+		skill1.setSkillId("skill1");
+		skill1.setSkillName("java");
+		
+	
+		
+		Skill skill2= new Skill();
+		skill2.setSkillId("skill2");
+		skill2.setSkillName("dot net");
+		
+		
+		Set<Skill> skillsSet= new HashSet<Skill>();
+		skillsSet.add(skill1);
+		skillsSet.add(skill2);
+		
+		
+		SkillForJob skills= new SkillForJob();
+		skills.setJobId(job.getJobId());
+		skills.setSkillRequired(skillsSet);
+		
+		//job.setSkillsRequied(skills);
+		//skills.setJob(job);
+		
+		
+		
+		session.persist((job));
+		}
+		
+		session.getTransaction().commit();
+		
+	}
+	
 
 }

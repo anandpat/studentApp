@@ -17,7 +17,7 @@
 		<one-to-one name="job" class="com.anand.studentApp.models.Job"
 			constrained="true"></one-to-one>
      
-     <set name="skillRequired" cascade="all">
+     <set name="skillRequired" >
          <key column="jobId"/>
          <one-to-many class="com.anand.studentApp.models.Skill"/>
       </set>
